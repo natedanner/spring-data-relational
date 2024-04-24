@@ -95,25 +95,29 @@ public class JdbcRepositoryEmbeddedImmutableIntegrationTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this) return true;
-			if (!(o instanceof final DummyEntity other))
+			if (o == this) {
+				return true;
+			}
+			if (!(o instanceof final DummyEntity other)) {
 				return false;
+			}
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
-			if (!Objects.equals(this$id, other$id))
+			if (!Objects.equals(this$id, other$id)) {
 				return false;
+			}
 			final Object this$prefixedEmbeddable = this.getPrefixedEmbeddable();
 			final Object other$prefixedEmbeddable = other.getPrefixedEmbeddable();
 			return Objects.equals(this$prefixedEmbeddable, other$prefixedEmbeddable);
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
 			final Object $prefixedEmbeddable = this.getPrefixedEmbeddable();
-			result = result * PRIME + ($prefixedEmbeddable == null ? 43 : $prefixedEmbeddable.hashCode());
+			result = result * prime + ($prefixedEmbeddable == null ? 43 : $prefixedEmbeddable.hashCode());
 			return result;
 		}
 
@@ -149,25 +153,29 @@ public class JdbcRepositoryEmbeddedImmutableIntegrationTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this) return true;
-			if (!(o instanceof final Embeddable other))
+			if (o == this) {
+				return true;
+			}
+			if (!(o instanceof final Embeddable other)) {
 				return false;
+			}
 			final Object this$attr1 = this.getAttr1();
 			final Object other$attr1 = other.getAttr1();
-			if (!Objects.equals(this$attr1, other$attr1))
+			if (!Objects.equals(this$attr1, other$attr1)) {
 				return false;
+			}
 			final Object this$attr2 = this.getAttr2();
 			final Object other$attr2 = other.getAttr2();
 			return Objects.equals(this$attr2, other$attr2);
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $attr1 = this.getAttr1();
-			result = result * PRIME + ($attr1 == null ? 43 : $attr1.hashCode());
+			result = result * prime + ($attr1 == null ? 43 : $attr1.hashCode());
 			final Object $attr2 = this.getAttr2();
-			result = result * PRIME + ($attr2 == null ? 43 : $attr2.hashCode());
+			result = result * prime + ($attr2 == null ? 43 : $attr2.hashCode());
 			return result;
 		}
 

@@ -160,9 +160,8 @@ public class H2R2dbcRepositoryIntegrationTests extends AbstractR2dbcRepositoryIn
 		IdOnlyEntity entity1 = new IdOnlyEntity();
 		idOnlyEntityRepository.saveAll(Collections.singletonList(entity1))
 			.as(StepVerifier::create) //
-			.consumeNextWith( actual -> {
-				assertThat(actual.getId()).isNotNull();
-			}).verifyComplete();
+			.consumeNextWith( actual ->
+				assertThat(actual.getId()).isNotNull()).verifyComplete();
 	}
 
 	@Test // gh-519

@@ -324,38 +324,43 @@ public class ImmutableAggregateTemplateHsqlIntegrationTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this)
+			if (o == this) {
 				return true;
-			if (!(o instanceof final LegoSet other))
+			}
+			if (!(o instanceof final LegoSet other)) {
 				return false;
+			}
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
-			if (!Objects.equals(this$id, other$id))
+			if (!Objects.equals(this$id, other$id)) {
 				return false;
+			}
 			final Object this$name = this.getName();
 			final Object other$name = other.getName();
-			if (!Objects.equals(this$name, other$name))
+			if (!Objects.equals(this$name, other$name)) {
 				return false;
+			}
 			final Object this$manual = this.getManual();
 			final Object other$manual = other.getManual();
-			if (!Objects.equals(this$manual, other$manual))
+			if (!Objects.equals(this$manual, other$manual)) {
 				return false;
+			}
 			final Object this$author = this.getAuthor();
 			final Object other$author = other.getAuthor();
 			return Objects.equals(this$author, other$author);
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
 			final Object $name = this.getName();
-			result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+			result = result * prime + ($name == null ? 43 : $name.hashCode());
 			final Object $manual = this.getManual();
-			result = result * PRIME + ($manual == null ? 43 : $manual.hashCode());
+			result = result * prime + ($manual == null ? 43 : $manual.hashCode());
 			final Object $author = this.getAuthor();
-			result = result * PRIME + ($author == null ? 43 : $author.hashCode());
+			result = result * prime + ($author == null ? 43 : $author.hashCode());
 			return result;
 		}
 
@@ -400,26 +405,29 @@ public class ImmutableAggregateTemplateHsqlIntegrationTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this)
+			if (o == this) {
 				return true;
-			if (!(o instanceof final Manual other))
+			}
+			if (!(o instanceof final Manual other)) {
 				return false;
+			}
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
-			if (!Objects.equals(this$id, other$id))
+			if (!Objects.equals(this$id, other$id)) {
 				return false;
+			}
 			final Object this$content = this.getContent();
 			final Object other$content = other.getContent();
 			return Objects.equals(this$content, other$content);
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
 			final Object $content = this.getContent();
-			result = result * PRIME + ($content == null ? 43 : $content.hashCode());
+			result = result * prime + ($content == null ? 43 : $content.hashCode());
 			return result;
 		}
 
@@ -456,26 +464,29 @@ public class ImmutableAggregateTemplateHsqlIntegrationTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this)
+			if (o == this) {
 				return true;
-			if (!(o instanceof final Author other))
+			}
+			if (!(o instanceof final Author other)) {
 				return false;
+			}
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
-			if (!Objects.equals(this$id, other$id))
+			if (!Objects.equals(this$id, other$id)) {
 				return false;
+			}
 			final Object this$name = this.getName();
 			final Object other$name = other.getName();
 			return Objects.equals(this$name, other$name);
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
 			final Object $name = this.getName();
-			result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+			result = result * prime + ($name == null ? 43 : $name.hashCode());
 			return result;
 		}
 
@@ -547,26 +558,29 @@ public class ImmutableAggregateTemplateHsqlIntegrationTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this)
+			if (o == this) {
 				return true;
-			if (!(o instanceof final NonRoot other))
+			}
+			if (!(o instanceof final NonRoot other)) {
 				return false;
+			}
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
-			if (!Objects.equals(this$id, other$id))
+			if (!Objects.equals(this$id, other$id)) {
 				return false;
+			}
 			final Object this$name = this.getName();
 			final Object other$name = other.getName();
 			return Objects.equals(this$name, other$name);
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
 			final Object $name = this.getName();
-			result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+			result = result * prime + ($name == null ? 43 : $name.hashCode());
 			return result;
 		}
 

@@ -90,10 +90,9 @@ public final class Identifier {
 
 		List<SingleIdentifierValue> values = new ArrayList<>();
 
-		map.forEach((k, v) -> {
+		map.forEach((k, v) ->
 
-			values.add(new SingleIdentifierValue(k, v, v != null ? ClassUtils.getUserClass(v) : Object.class));
-		});
+			values.add(new SingleIdentifierValue(k, v, v != null ? ClassUtils.getUserClass(v) : Object.class)));
 
 		return new Identifier(Collections.unmodifiableList(values));
 	}
@@ -224,10 +223,12 @@ public final class Identifier {
 		@Override
 		public boolean equals(@Nullable Object o) {
 
-			if (this == o)
+			if (this == o) {
 				return true;
-			if (o == null || getClass() != o.getClass())
+			}
+			if (o == null || getClass() != o.getClass()) {
 				return false;
+			}
 			SingleIdentifierValue that = (SingleIdentifierValue) o;
 			return name.equals(that.name) && value.equals(that.value) && targetType.equals(that.targetType);
 		}
@@ -288,10 +289,12 @@ public final class Identifier {
 	@Override
 	public boolean equals(@Nullable Object o) {
 
-		if (this == o)
+		if (this == o) {
 			return true;
-		if (o == null || getClass() != o.getClass())
+		}
+		if (o == null || getClass() != o.getClass()) {
 			return false;
+		}
 		Identifier that = (Identifier) o;
 		return Objects.equals(parts, that.parts);
 	}

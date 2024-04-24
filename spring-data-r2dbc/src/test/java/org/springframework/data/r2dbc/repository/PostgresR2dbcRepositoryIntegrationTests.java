@@ -165,10 +165,9 @@ public class PostgresR2dbcRepositoryIntegrationTests extends AbstractR2dbcReposi
 		WithHStore person = new WithHStore(null, Collections.singletonMap("hello", "world"));
 		hstoreRepositoryWith.save(person).as(StepVerifier::create).expectNextCount(1).verifyComplete();
 
-		hstoreRepositoryWith.findAll().as(StepVerifier::create).consumeNextWith(actual -> {
+		hstoreRepositoryWith.findAll().as(StepVerifier::create).consumeNextWith(actual ->
 
-			assertThat(actual.hstoreValue).isNotNull().containsEntry("hello", "world");
-		}).verifyComplete();
+			assertThat(actual.hstoreValue).isNotNull().containsEntry("hello", "world")).verifyComplete();
 	}
 
 	static class WithJson {

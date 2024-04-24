@@ -42,7 +42,7 @@ public class MyBatisJdbcConfigurationIntegrationTests extends AbstractJdbcConfig
 	@Test // DATAJDBC-395
 	public void bootstrapsMyBatisDataAccessStrategy() {
 
-		assertApplicationContext(context -> {
+		assertApplicationContext(context ->
 
 			assertThat(context.getBean(DataAccessStrategy.class)) //
 					.isInstanceOfSatisfying(CascadingDataAccessStrategy.class, it -> {
@@ -51,9 +51,7 @@ public class MyBatisJdbcConfigurationIntegrationTests extends AbstractJdbcConfig
 
 						assertThat(strategies).hasSize(2);
 						assertThat(strategies.get(0)).isInstanceOf(MyBatisDataAccessStrategy.class);
-					});
-
-		}, MyBatisJdbcConfigurationUnderTest.class, MyBatisInfrastructure.class);
+					}), MyBatisJdbcConfigurationUnderTest.class, MyBatisInfrastructure.class);
 	}
 
 	@Configuration

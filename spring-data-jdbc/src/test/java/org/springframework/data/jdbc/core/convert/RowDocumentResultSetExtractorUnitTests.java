@@ -69,34 +69,29 @@ public class RowDocumentResultSetExtractorUnitTests {
 
 		Assertions.setMaxElementsForPrinting(20);
 
-		new ResultSetTester(WithEmbedded.class, context).resultSet(rsc -> {
-			rsc.withPaths("id1", "name");
-		}).run(resultSet -> {
+		new ResultSetTester(WithEmbedded.class, context).resultSet(rsc ->
+			rsc.withPaths("id1", "name")).run(resultSet ->
 			assertThatIllegalStateException()
-					.isThrownBy(() -> documentExtractor.extractNextDocument(WithEmbedded.class, resultSet));
-		});
+					.isThrownBy(() -> documentExtractor.extractNextDocument(WithEmbedded.class, resultSet)));
 	}
 
 	@Test // GH-1446
 	void singleSimpleEntityGetsExtractedFromSingleRow() throws SQLException {
 
-		testerFor(WithEmbedded.class).resultSet(rsc -> {
+		testerFor(WithEmbedded.class).resultSet(rsc ->
 			rsc.withPaths("id1", "name") //
-					.withRow(1, "Alfred");
-		}).run(document -> {
+					.withRow(1, "Alfred")).run(document ->
 
-			assertThat(document).containsEntry("id1", 1).containsEntry("name", "Alfred");
-		});
+			assertThat(document).containsEntry("id1", 1).containsEntry("name", "Alfred"));
 	}
 
 	@Test // GH-1446
 	void multipleSimpleEntitiesGetExtractedFromMultipleRows() throws SQLException {
 
-		new ResultSetTester(WithEmbedded.class, context).resultSet(rsc -> {
+		new ResultSetTester(WithEmbedded.class, context).resultSet(rsc ->
 			rsc.withPaths("id1", "name") //
 					.withRow(1, "Alfred") //
-					.withRow(2, "Bertram");
-		}).run(resultSet -> {
+					.withRow(2, "Bertram")).run(resultSet -> {
 
 			RowDocument document = documentExtractor.extractNextDocument(WithEmbedded.class, resultSet);
 			assertThat(document).containsEntry("id1", 1).containsEntry("name", "Alfred");
@@ -111,25 +106,21 @@ public class RowDocumentResultSetExtractorUnitTests {
 		@Test // GH-1446
 		void embeddedGetsExtractedFromSingleRow() {
 
-			testerFor(WithEmbedded.class).resultSet(rsc -> {
+			testerFor(WithEmbedded.class).resultSet(rsc ->
 				rsc.withPaths("id1", "embeddedNullable.dummyName") //
-						.withRow(1, "Imani");
-			}).run(document -> {
+						.withRow(1, "Imani")).run(document ->
 
-				assertThat(document).containsEntry("id1", 1).containsEntry("dummy_name", "Imani");
-			});
+				assertThat(document).containsEntry("id1", 1).containsEntry("dummy_name", "Imani"));
 		}
 
 		@Test // GH-1446
 		void emptyEmbeddedGetsExtractedFromSingleRow() throws SQLException {
 
-			testerFor(WithEmbedded.class).resultSet(rsc -> {
+			testerFor(WithEmbedded.class).resultSet(rsc ->
 				rsc.withPaths("id1", "embeddedNullable.dummyName") //
-						.withRow(1, null);
-			}).run(document -> {
+						.withRow(1, null)).run(document ->
 
-				assertThat(document).hasSize(1).containsEntry("id1", 1);
-			});
+				assertThat(document).hasSize(1).containsEntry("id1", 1));
 		}
 	}
 
@@ -138,27 +129,23 @@ public class RowDocumentResultSetExtractorUnitTests {
 		@Test // GH-1446
 		void entityReferenceGetsExtractedFromSingleRow() {
 
-			testerFor(WithOneToOne.class).resultSet(rsc -> {
+			testerFor(WithOneToOne.class).resultSet(rsc ->
 				rsc.withPaths("id1", "related", "related.dummyName") //
-						.withRow(1, 1, "Dummy Alfred");
-			}).run(document -> {
+						.withRow(1, 1, "Dummy Alfred")).run(document ->
 
 				assertThat(document).containsKey("related").containsEntry("related",
-						new RowDocument().append("dummy_name", "Dummy Alfred"));
-			});
+						new RowDocument().append("dummy_name", "Dummy Alfred")));
 		}
 
 		@Test // GH-1446
 		void nullEntityReferenceGetsExtractedFromSingleRow() {
 
-			testerFor(WithOneToOne.class).resultSet(rsc -> {
+			testerFor(WithOneToOne.class).resultSet(rsc ->
 				rsc.withPaths("id1", "related", "related.dummyName") //
-						.withRow(1, null, "Dummy Alfred");
-			}).run(document -> {
+						.withRow(1, null, "Dummy Alfred")).run(document ->
 
 				assertThat(document).containsKey("related").containsEntry("related",
-						new RowDocument().append("dummy_name", "Dummy Alfred"));
-			});
+						new RowDocument().append("dummy_name", "Dummy Alfred")));
 		}
 	}
 
@@ -168,66 +155,58 @@ public class RowDocumentResultSetExtractorUnitTests {
 		@Test // GH-1446
 		void extractEmptySetReference() {
 
-			testerFor(WithSets.class).resultSet(rsc -> {
+			testerFor(WithSets.class).resultSet(rsc ->
 				rsc.withPaths("id1", "first", "first.dummyName") //
 						.withRow(1, null, null)//
 						.withRow(1, null, null) //
-						.withRow(1, null, null);
-			}).run(document -> {
+						.withRow(1, null, null)).run(document ->
 
-				assertThat(document).hasSize(1).containsEntry("id1", 1);
-			});
+				assertThat(document).hasSize(1).containsEntry("id1", 1));
 		}
 
 		@Test // GH-1446
 		void extractSingleSetReference() {
 
-			testerFor(WithSets.class).resultSet(rsc -> {
+			testerFor(WithSets.class).resultSet(rsc ->
 				rsc.withPath("id1").withKey("first").withPath("first.dummyName") //
 						.withRow(1, 1, "Dummy Alfred")//
 						.withRow(1, 2, "Dummy Berta") //
-						.withRow(1, 3, "Dummy Carl");
-			}).run(document -> {
+						.withRow(1, 3, "Dummy Carl")).run(document ->
 
 				assertThat(document).containsEntry("id1", 1).containsEntry("first",
 						Arrays.asList(RowDocument.of("dummy_name", "Dummy Alfred"), RowDocument.of("dummy_name", "Dummy Berta"),
-								RowDocument.of("dummy_name", "Dummy Carl")));
-			});
+								RowDocument.of("dummy_name", "Dummy Carl"))));
 		}
 
 		@Test // GH-1446
 		void extractSetReferenceAndSimpleProperty() {
 
-			testerFor(WithSets.class).resultSet(rsc -> {
+			testerFor(WithSets.class).resultSet(rsc ->
 				rsc.withPaths("id1", "name").withKey("first").withPath("first.dummyName") //
 						.withRow(1, "Simplicissimus", 1, "Dummy Alfred")//
 						.withRow(1, null, 2, "Dummy Berta") //
-						.withRow(1, null, 3, "Dummy Carl");
-			}).run(document -> {
+						.withRow(1, null, 3, "Dummy Carl")).run(document ->
 
 				assertThat(document).containsEntry("id1", 1).containsEntry("name", "Simplicissimus").containsEntry("first",
 						Arrays.asList(RowDocument.of("dummy_name", "Dummy Alfred"), RowDocument.of("dummy_name", "Dummy Berta"),
-								RowDocument.of("dummy_name", "Dummy Carl")));
-			});
+								RowDocument.of("dummy_name", "Dummy Carl"))));
 		}
 
 		@Test // GH-1446
 		void extractMultipleSetReference() {
 
-			testerFor(WithSets.class).resultSet(rsc -> {
+			testerFor(WithSets.class).resultSet(rsc ->
 				rsc.withPaths("id1").withKey("first").withPath("first.dummyName").withKey("second").withPath("second.dummyName") //
 						.withRow(1, 1, "Dummy Alfred", 1, "Other Ephraim")//
 						.withRow(1, 2, "Dummy Berta", 2, "Other Zeno") //
-						.withRow(1, 3, "Dummy Carl", null, null);
-			}).run(document -> {
+						.withRow(1, 3, "Dummy Carl", null, null)).run(document ->
 
 				assertThat(document).hasSize(3)
 						.containsEntry("first",
 								Arrays.asList(RowDocument.of("dummy_name", "Dummy Alfred"), RowDocument.of("dummy_name", "Dummy Berta"),
 										RowDocument.of("dummy_name", "Dummy Carl")))
 						.containsEntry("second", Arrays.asList(RowDocument.of("dummy_name", "Other Ephraim"),
-								RowDocument.of("dummy_name", "Other Zeno")));
-			});
+								RowDocument.of("dummy_name", "Other Zeno"))));
 		}
 
 		@Nested
@@ -236,32 +215,29 @@ public class RowDocumentResultSetExtractorUnitTests {
 			@Test // GH-1446
 			void extractSingleListReference() {
 
-				testerFor(WithList.class).resultSet(rsc -> {
+				testerFor(WithList.class).resultSet(rsc ->
 					rsc.withPaths("id").withKey("withoutIds").withPath("withoutIds.name") //
 							.withRow(1, 1, "Dummy Alfred")//
 							.withRow(1, 2, "Dummy Berta") //
-							.withRow(1, 3, "Dummy Carl");
-				}).run(document -> {
+							.withRow(1, 3, "Dummy Carl")).run(document ->
 
 					assertThat(document).hasSize(2).containsEntry("without_ids",
 							Arrays.asList(RowDocument.of("name", "Dummy Alfred"), RowDocument.of("name", "Dummy Berta"),
-									RowDocument.of("name", "Dummy Carl")));
-				});
+									RowDocument.of("name", "Dummy Carl"))));
 			}
 
 			@Test // GH-1446
 			void extractSingleUnorderedListReference() {
 
-				testerFor(WithList.class).resultSet(rsc -> {
+				testerFor(WithList.class).resultSet(rsc ->
 					rsc.withPaths("id").withKey("withoutIds").withPath("withoutIds.name") //
 							.withRow(1, 0, "Dummy Alfred")//
 							.withRow(1, 2, "Dummy Carl") //
-							.withRow(1, 1, "Dummy Berta");
-				}).run(document -> {
+							.withRow(1, 1, "Dummy Berta")).run(document -> {
 
 					assertThat(document).containsKey("without_ids");
-					List<RowDocument> dummy_list = document.getList("without_ids");
-					assertThat(dummy_list).hasSize(3).contains(new RowDocument().append("name", "Dummy Alfred"))
+					List<RowDocument> dummyList = document.getList("without_ids");
+					assertThat(dummyList).hasSize(3).contains(new RowDocument().append("name", "Dummy Alfred"))
 							.contains(new RowDocument().append("name", "Dummy Berta"))
 							.contains(new RowDocument().append("name", "Dummy Carl"));
 				});
@@ -275,40 +251,36 @@ public class RowDocumentResultSetExtractorUnitTests {
 		@Test // GH-1446
 		void extractSingleMapReference() {
 
-			testerFor(WithMaps.class).resultSet(rsc -> {
+			testerFor(WithMaps.class).resultSet(rsc ->
 				rsc.withPaths("id1").withKey("first").withPath("first.dummyName") //
 						.withRow(1, "alpha", "Dummy Alfred")//
 						.withRow(1, "beta", "Dummy Berta") //
-						.withRow(1, "gamma", "Dummy Carl");
-			}).run(document -> {
+						.withRow(1, "gamma", "Dummy Carl")).run(document ->
 
 				assertThat(document).containsEntry("first", Map.of("alpha", RowDocument.of("dummy_name", "Dummy Alfred"),
-						"beta", RowDocument.of("dummy_name", "Dummy Berta"), "gamma", RowDocument.of("dummy_name", "Dummy Carl")));
-			});
+						"beta", RowDocument.of("dummy_name", "Dummy Berta"), "gamma", RowDocument.of("dummy_name", "Dummy Carl"))));
 		}
 
 		@Test // GH-1446
 		void extractMultipleCollectionReference() {
 
-			testerFor(WithMapsAndList.class).resultSet(rsc -> {
+			testerFor(WithMapsAndList.class).resultSet(rsc ->
 				rsc.withPaths("id1").withKey("map").withPath("map.dummyName").withKey("list").withPath("list.name") //
 						.withRow(1, "alpha", "Dummy Alfred", 1, "Other Ephraim")//
 						.withRow(1, "beta", "Dummy Berta", 2, "Other Zeno") //
-						.withRow(1, "gamma", "Dummy Carl", null, null);
-			}).run(document -> {
+						.withRow(1, "gamma", "Dummy Carl", null, null)).run(document ->
 
 				assertThat(document).containsEntry("map", Map.of("alpha", RowDocument.of("dummy_name", "Dummy Alfred"), //
 						"beta", RowDocument.of("dummy_name", "Dummy Berta"), //
 						"gamma", RowDocument.of("dummy_name", "Dummy Carl"))) //
 						.containsEntry("list",
-								Arrays.asList(RowDocument.of("name", "Other Ephraim"), RowDocument.of("name", "Other Zeno")));
-			});
+								Arrays.asList(RowDocument.of("name", "Other Ephraim"), RowDocument.of("name", "Other Zeno"))));
 		}
 
 		@Test // GH-1446
 		void extractNestedMapsWithId() {
 
-			testerFor(WithMaps.class).resultSet(rsc -> {
+			testerFor(WithMaps.class).resultSet(rsc ->
 				rsc.withPaths("id1", "name").withKey("intermediate")
 						.withPaths("intermediate.iId", "intermediate.intermediateName").withKey("intermediate.dummyMap")
 						.withPaths("intermediate.dummyMap.dummyName")
@@ -316,8 +288,7 @@ public class RowDocumentResultSetExtractorUnitTests {
 						.withRow(1, "Alfred", "alpha", 23, "Inami", "omega", "Dustin") //
 						.withRow(1, null, "alpha", 23, null, "zeta", "Dora") //
 						.withRow(1, null, "beta", 24, "Ina", "eta", "Dotty") //
-						.withRow(1, null, "gamma", 25, "Ion", null, null);
-			}).run(document -> {
+						.withRow(1, null, "gamma", 25, "Ion", null, null)).run(document -> {
 
 				assertThat(document).containsEntry("id1", 1).containsEntry("name", "Alfred");
 

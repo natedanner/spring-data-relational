@@ -539,30 +539,37 @@ class SaveBatchingAggregateChangeTest {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this) return true;
-			if (!(o instanceof RootWithSameLengthReferences)) return false;
+			if (o == this) {
+				return true;
+			}
+			if (!(o instanceof RootWithSameLengthReferences)) {
+				return false;
+			}
 			final RootWithSameLengthReferences other = (RootWithSameLengthReferences) o;
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
-			if (this$id == null ? other$id != null : !this$id.equals(other$id)) return false;
+			if (this$id == null ? other$id != null : !this$id.equals(other$id)) {
+				return false;
+			}
 			final Object this$one = this.getOne();
 			final Object other$one = other.getOne();
-			if (this$one == null ? other$one != null : !this$one.equals(other$one)) return false;
+			if (this$one == null ? other$one != null : !this$one.equals(other$one)) {
+				return false;
+			}
 			final Object this$two = this.getTwo();
 			final Object other$two = other.getTwo();
-			if (this$two == null ? other$two != null : !this$two.equals(other$two)) return false;
-			return true;
+			return !(this$two == null ? other$two != null : !this$two.equals(other$two));
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
 			final Object $one = this.getOne();
-			result = result * PRIME + ($one == null ? 43 : $one.hashCode());
+			result = result * prime + ($one == null ? 43 : $one.hashCode());
 			final Object $two = this.getTwo();
-			result = result * PRIME + ($two == null ? 43 : $two.hashCode());
+			result = result * prime + ($two == null ? 43 : $two.hashCode());
 			return result;
 		}
 
@@ -591,26 +598,30 @@ class SaveBatchingAggregateChangeTest {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this) return true;
-			if (!(o instanceof Root)) return false;
+			if (o == this) {
+				return true;
+			}
+			if (!(o instanceof Root)) {
+				return false;
+			}
 			final Root other = (Root) o;
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
-			if (this$id == null ? other$id != null : !this$id.equals(other$id)) return false;
+			if (this$id == null ? other$id != null : !this$id.equals(other$id)) {
+				return false;
+			}
 			final Object this$intermediate = this.getIntermediate();
 			final Object other$intermediate = other.getIntermediate();
-			if (this$intermediate == null ? other$intermediate != null : !this$intermediate.equals(other$intermediate))
-				return false;
-			return true;
+			return !(this$intermediate == null ? other$intermediate != null : !this$intermediate.equals(other$intermediate));
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
 			final Object $intermediate = this.getIntermediate();
-			result = result * PRIME + ($intermediate == null ? 43 : $intermediate.hashCode());
+			result = result * prime + ($intermediate == null ? 43 : $intermediate.hashCode());
 			return result;
 		}
 
@@ -645,30 +656,37 @@ class SaveBatchingAggregateChangeTest {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this) return true;
-			if (!(o instanceof Intermediate)) return false;
+			if (o == this) {
+				return true;
+			}
+			if (!(o instanceof Intermediate)) {
+				return false;
+			}
 			final Intermediate other = (Intermediate) o;
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
-			if (this$id == null ? other$id != null : !this$id.equals(other$id)) return false;
+			if (this$id == null ? other$id != null : !this$id.equals(other$id)) {
+				return false;
+			}
 			final Object this$name = this.getName();
 			final Object other$name = other.getName();
-			if (this$name == null ? other$name != null : !this$name.equals(other$name)) return false;
+			if (this$name == null ? other$name != null : !this$name.equals(other$name)) {
+				return false;
+			}
 			final Object this$leaf = this.getLeaf();
 			final Object other$leaf = other.getLeaf();
-			if (this$leaf == null ? other$leaf != null : !this$leaf.equals(other$leaf)) return false;
-			return true;
+			return !(this$leaf == null ? other$leaf != null : !this$leaf.equals(other$leaf));
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
 			final Object $name = this.getName();
-			result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+			result = result * prime + ($name == null ? 43 : $name.hashCode());
 			final Object $leaf = this.getLeaf();
-			result = result * PRIME + ($leaf == null ? 43 : $leaf.hashCode());
+			result = result * prime + ($leaf == null ? 43 : $leaf.hashCode());
 			return result;
 		}
 
@@ -697,25 +715,30 @@ class SaveBatchingAggregateChangeTest {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this) return true;
-			if (!(o instanceof Leaf)) return false;
+			if (o == this) {
+				return true;
+			}
+			if (!(o instanceof Leaf)) {
+				return false;
+			}
 			final Leaf other = (Leaf) o;
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
-			if (this$id == null ? other$id != null : !this$id.equals(other$id)) return false;
+			if (this$id == null ? other$id != null : !this$id.equals(other$id)) {
+				return false;
+			}
 			final Object this$name = this.getName();
 			final Object other$name = other.getName();
-			if (this$name == null ? other$name != null : !this$name.equals(other$name)) return false;
-			return true;
+			return !(this$name == null ? other$name != null : !this$name.equals(other$name));
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
 			final Object $name = this.getName();
-			result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+			result = result * prime + ($name == null ? 43 : $name.hashCode());
 			return result;
 		}
 

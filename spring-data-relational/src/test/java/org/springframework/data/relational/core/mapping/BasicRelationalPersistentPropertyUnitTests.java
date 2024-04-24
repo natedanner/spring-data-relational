@@ -60,7 +60,7 @@ public class BasicRelationalPersistentPropertyUnitTests {
 		RelationalPersistentProperty listProperty = entity.getRequiredPersistentProperty("someList");
 
 		PersistentPropertyPath<RelationalPersistentProperty> path = context
-				.findPersistentPropertyPaths(DummyEntity.class, p -> p.getName().equals("someList")).getFirst()
+				.findPersistentPropertyPaths(DummyEntity.class, p -> "someList".equals(p.getName())).getFirst()
 				.orElseThrow(() -> new AssertionFailedError("Couldn't find path for 'someList'"));
 
 		assertThat(listProperty.getReverseColumnName(path.getLeafProperty().getOwner()))
@@ -304,61 +304,85 @@ public class BasicRelationalPersistentPropertyUnitTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this) return true;
-			if (!(o instanceof DummyEntity)) return false;
+			if (o == this) {
+				return true;
+			}
+			if (!(o instanceof DummyEntity)) {
+				return false;
+			}
 			final DummyEntity other = (DummyEntity) o;
-			if (!other.canEqual((Object) this)) return false;
+			if (!other.canEqual((Object) this)) {
+				return false;
+			}
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
-			if (this$id == null ? other$id != null : !this$id.equals(other$id)) return false;
+			if (this$id == null ? other$id != null : !this$id.equals(other$id)) {
+				return false;
+			}
 			final Object this$someEnum = this.getSomeEnum();
 			final Object other$someEnum = other.getSomeEnum();
-			if (this$someEnum == null ? other$someEnum != null : !this$someEnum.equals(other$someEnum)) return false;
+			if (this$someEnum == null ? other$someEnum != null : !this$someEnum.equals(other$someEnum)) {
+				return false;
+			}
 			final Object this$localDateTime = this.getLocalDateTime();
 			final Object other$localDateTime = other.getLocalDateTime();
-			if (this$localDateTime == null ? other$localDateTime != null : !this$localDateTime.equals(other$localDateTime))
+			if (this$localDateTime == null ? other$localDateTime != null : !this$localDateTime.equals(other$localDateTime)) {
 				return false;
+			}
 			final Object this$zonedDateTime = this.getZonedDateTime();
 			final Object other$zonedDateTime = other.getZonedDateTime();
-			if (this$zonedDateTime == null ? other$zonedDateTime != null : !this$zonedDateTime.equals(other$zonedDateTime))
+			if (this$zonedDateTime == null ? other$zonedDateTime != null : !this$zonedDateTime.equals(other$zonedDateTime)) {
 				return false;
+			}
 			final Object this$listOfString = this.getListOfString();
 			final Object other$listOfString = other.getListOfString();
-			if (this$listOfString == null ? other$listOfString != null : !this$listOfString.equals(other$listOfString))
+			if (this$listOfString == null ? other$listOfString != null : !this$listOfString.equals(other$listOfString)) {
 				return false;
-			if (!java.util.Arrays.deepEquals(this.getArrayOfString(), other.getArrayOfString())) return false;
+			}
+			if (!java.util.Arrays.deepEquals(this.getArrayOfString(), other.getArrayOfString())) {
+				return false;
+			}
 			final Object this$listOfEntity = this.getListOfEntity();
 			final Object other$listOfEntity = other.getListOfEntity();
-			if (this$listOfEntity == null ? other$listOfEntity != null : !this$listOfEntity.equals(other$listOfEntity))
+			if (this$listOfEntity == null ? other$listOfEntity != null : !this$listOfEntity.equals(other$listOfEntity)) {
 				return false;
-			if (!java.util.Arrays.deepEquals(this.getArrayOfEntity(), other.getArrayOfEntity())) return false;
+			}
+			if (!java.util.Arrays.deepEquals(this.getArrayOfEntity(), other.getArrayOfEntity())) {
+				return false;
+			}
 			final Object this$someList = this.getSomeList();
 			final Object other$someList = other.getSomeList();
-			if (this$someList == null ? other$someList != null : !this$someList.equals(other$someList)) return false;
+			if (this$someList == null ? other$someList != null : !this$someList.equals(other$someList)) {
+				return false;
+			}
 			final Object this$name = this.getName();
 			final Object other$name = other.getName();
-			if (this$name == null ? other$name != null : !this$name.equals(other$name)) return false;
+			if (this$name == null ? other$name != null : !this$name.equals(other$name)) {
+				return false;
+			}
 			final Object this$spelExpression1 = this.getSpelExpression1();
 			final Object other$spelExpression1 = other.getSpelExpression1();
-			if (this$spelExpression1 == null ? other$spelExpression1 != null : !this$spelExpression1.equals(other$spelExpression1))
+			if (this$spelExpression1 == null ? other$spelExpression1 != null : !this$spelExpression1.equals(other$spelExpression1)) {
 				return false;
+			}
 			final Object this$littleBobbyTables = this.getLittleBobbyTables();
 			final Object other$littleBobbyTables = other.getLittleBobbyTables();
-			if (this$littleBobbyTables == null ? other$littleBobbyTables != null : !this$littleBobbyTables.equals(other$littleBobbyTables))
+			if (this$littleBobbyTables == null ? other$littleBobbyTables != null : !this$littleBobbyTables.equals(other$littleBobbyTables)) {
 				return false;
+			}
 			final Object this$poorDeveloperProgrammaticallyAskingToShootThemselvesInTheFoot = this.getPoorDeveloperProgrammaticallyAskingToShootThemselvesInTheFoot();
 			final Object other$poorDeveloperProgrammaticallyAskingToShootThemselvesInTheFoot = other.getPoorDeveloperProgrammaticallyAskingToShootThemselvesInTheFoot();
-			if (this$poorDeveloperProgrammaticallyAskingToShootThemselvesInTheFoot == null ? other$poorDeveloperProgrammaticallyAskingToShootThemselvesInTheFoot != null : !this$poorDeveloperProgrammaticallyAskingToShootThemselvesInTheFoot.equals(other$poorDeveloperProgrammaticallyAskingToShootThemselvesInTheFoot))
+			if (this$poorDeveloperProgrammaticallyAskingToShootThemselvesInTheFoot == null ? other$poorDeveloperProgrammaticallyAskingToShootThemselvesInTheFoot != null : !this$poorDeveloperProgrammaticallyAskingToShootThemselvesInTheFoot.equals(other$poorDeveloperProgrammaticallyAskingToShootThemselvesInTheFoot)) {
 				return false;
+			}
 			final Object this$embeddableEntity = this.getEmbeddableEntity();
 			final Object other$embeddableEntity = other.getEmbeddableEntity();
-			if (this$embeddableEntity == null ? other$embeddableEntity != null : !this$embeddableEntity.equals(other$embeddableEntity))
+			if (this$embeddableEntity == null ? other$embeddableEntity != null : !this$embeddableEntity.equals(other$embeddableEntity)) {
 				return false;
+			}
 			final Object this$prefixedEmbeddableEntity = this.getPrefixedEmbeddableEntity();
 			final Object other$prefixedEmbeddableEntity = other.getPrefixedEmbeddableEntity();
-			if (this$prefixedEmbeddableEntity == null ? other$prefixedEmbeddableEntity != null : !this$prefixedEmbeddableEntity.equals(other$prefixedEmbeddableEntity))
-				return false;
-			return true;
+			return !(this$prefixedEmbeddableEntity == null ? other$prefixedEmbeddableEntity != null : !this$prefixedEmbeddableEntity.equals(other$prefixedEmbeddableEntity));
 		}
 
 		protected boolean canEqual(final Object other) {
@@ -366,36 +390,36 @@ public class BasicRelationalPersistentPropertyUnitTests {
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
 			final Object $someEnum = this.getSomeEnum();
-			result = result * PRIME + ($someEnum == null ? 43 : $someEnum.hashCode());
+			result = result * prime + ($someEnum == null ? 43 : $someEnum.hashCode());
 			final Object $localDateTime = this.getLocalDateTime();
-			result = result * PRIME + ($localDateTime == null ? 43 : $localDateTime.hashCode());
+			result = result * prime + ($localDateTime == null ? 43 : $localDateTime.hashCode());
 			final Object $zonedDateTime = this.getZonedDateTime();
-			result = result * PRIME + ($zonedDateTime == null ? 43 : $zonedDateTime.hashCode());
+			result = result * prime + ($zonedDateTime == null ? 43 : $zonedDateTime.hashCode());
 			final Object $listOfString = this.getListOfString();
-			result = result * PRIME + ($listOfString == null ? 43 : $listOfString.hashCode());
-			result = result * PRIME + java.util.Arrays.deepHashCode(this.getArrayOfString());
+			result = result * prime + ($listOfString == null ? 43 : $listOfString.hashCode());
+			result = result * prime + java.util.Arrays.deepHashCode(this.getArrayOfString());
 			final Object $listOfEntity = this.getListOfEntity();
-			result = result * PRIME + ($listOfEntity == null ? 43 : $listOfEntity.hashCode());
-			result = result * PRIME + java.util.Arrays.deepHashCode(this.getArrayOfEntity());
+			result = result * prime + ($listOfEntity == null ? 43 : $listOfEntity.hashCode());
+			result = result * prime + java.util.Arrays.deepHashCode(this.getArrayOfEntity());
 			final Object $someList = this.getSomeList();
-			result = result * PRIME + ($someList == null ? 43 : $someList.hashCode());
+			result = result * prime + ($someList == null ? 43 : $someList.hashCode());
 			final Object $name = this.getName();
-			result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+			result = result * prime + ($name == null ? 43 : $name.hashCode());
 			final Object $spelExpression1 = this.getSpelExpression1();
-			result = result * PRIME + ($spelExpression1 == null ? 43 : $spelExpression1.hashCode());
+			result = result * prime + ($spelExpression1 == null ? 43 : $spelExpression1.hashCode());
 			final Object $littleBobbyTables = this.getLittleBobbyTables();
-			result = result * PRIME + ($littleBobbyTables == null ? 43 : $littleBobbyTables.hashCode());
+			result = result * prime + ($littleBobbyTables == null ? 43 : $littleBobbyTables.hashCode());
 			final Object $poorDeveloperProgrammaticallyAskingToShootThemselvesInTheFoot = this.getPoorDeveloperProgrammaticallyAskingToShootThemselvesInTheFoot();
-			result = result * PRIME + ($poorDeveloperProgrammaticallyAskingToShootThemselvesInTheFoot == null ? 43 : $poorDeveloperProgrammaticallyAskingToShootThemselvesInTheFoot.hashCode());
+			result = result * prime + ($poorDeveloperProgrammaticallyAskingToShootThemselvesInTheFoot == null ? 43 : $poorDeveloperProgrammaticallyAskingToShootThemselvesInTheFoot.hashCode());
 			final Object $embeddableEntity = this.getEmbeddableEntity();
-			result = result * PRIME + ($embeddableEntity == null ? 43 : $embeddableEntity.hashCode());
+			result = result * prime + ($embeddableEntity == null ? 43 : $embeddableEntity.hashCode());
 			final Object $prefixedEmbeddableEntity = this.getPrefixedEmbeddableEntity();
-			result = result * PRIME + ($prefixedEmbeddableEntity == null ? 43 : $prefixedEmbeddableEntity.hashCode());
+			result = result * prime + ($prefixedEmbeddableEntity == null ? 43 : $prefixedEmbeddableEntity.hashCode());
 			return result;
 		}
 
@@ -427,15 +451,19 @@ public class BasicRelationalPersistentPropertyUnitTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this) return true;
-			if (!(o instanceof EmbeddableEntity)) return false;
+			if (o == this) {
+				return true;
+			}
+			if (!(o instanceof EmbeddableEntity)) {
+				return false;
+			}
 			final EmbeddableEntity other = (EmbeddableEntity) o;
-			if (!other.canEqual((Object) this)) return false;
+			if (!other.canEqual((Object) this)) {
+				return false;
+			}
 			final Object this$embeddedTest = this.getEmbeddedTest();
 			final Object other$embeddedTest = other.getEmbeddedTest();
-			if (this$embeddedTest == null ? other$embeddedTest != null : !this$embeddedTest.equals(other$embeddedTest))
-				return false;
-			return true;
+			return !(this$embeddedTest == null ? other$embeddedTest != null : !this$embeddedTest.equals(other$embeddedTest));
 		}
 
 		protected boolean canEqual(final Object other) {
@@ -443,10 +471,10 @@ public class BasicRelationalPersistentPropertyUnitTests {
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $embeddedTest = this.getEmbeddedTest();
-			result = result * PRIME + ($embeddedTest == null ? 43 : $embeddedTest.hashCode());
+			result = result * prime + ($embeddedTest == null ? 43 : $embeddedTest.hashCode());
 			return result;
 		}
 

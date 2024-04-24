@@ -322,20 +322,22 @@ public class JdbcRepositoryWithListsIntegrationTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this)
+			if (o == this) {
 				return true;
-			if (!(o instanceof final Leaf other))
+			}
+			if (!(o instanceof final Leaf other)) {
 				return false;
+			}
 			final Object this$name = this.getName();
 			final Object other$name = other.getName();
 			return Objects.equals(this$name, other$name);
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $name = this.getName();
-			result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+			result = result * prime + ($name == null ? 43 : $name.hashCode());
 			return result;
 		}
 

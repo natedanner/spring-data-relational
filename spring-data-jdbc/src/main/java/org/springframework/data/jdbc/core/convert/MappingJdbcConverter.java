@@ -308,7 +308,7 @@ public class MappingJdbcConverter extends MappingRelationalConverter implements 
 	 * context-sensitive. Note that the identifier is held here because of a chicken and egg problem, while
 	 * {@link ResolvingConversionContext} hols the {@link AggregatePath}.
 	 */
-	class ResolvingRelationalPropertyValueProvider implements RelationalPropertyValueProvider {
+	final class ResolvingRelationalPropertyValueProvider implements RelationalPropertyValueProvider {
 
 		private final AggregatePathValueProvider delegate;
 

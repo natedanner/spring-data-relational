@@ -149,38 +149,43 @@ public class PostgresDialectIntegrationTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this)
+			if (o == this) {
 				return true;
-			if (!(o instanceof final Customer other))
+			}
+			if (!(o instanceof final Customer other)) {
 				return false;
+			}
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
-			if (!Objects.equals(this$id, other$id))
+			if (!Objects.equals(this$id, other$id)) {
 				return false;
+			}
 			final Object this$name = this.getName();
 			final Object other$name = other.getName();
-			if (!Objects.equals(this$name, other$name))
+			if (!Objects.equals(this$name, other$name)) {
 				return false;
+			}
 			final Object this$personData = this.getPersonData();
 			final Object other$personData = other.getPersonData();
-			if (!Objects.equals(this$personData, other$personData))
+			if (!Objects.equals(this$personData, other$personData)) {
 				return false;
+			}
 			final Object this$sessionData = this.getSessionData();
 			final Object other$sessionData = other.getSessionData();
 			return Objects.equals(this$sessionData, other$sessionData);
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
 			final Object $name = this.getName();
-			result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+			result = result * prime + ($name == null ? 43 : $name.hashCode());
 			final Object $personData = this.getPersonData();
-			result = result * PRIME + ($personData == null ? 43 : $personData.hashCode());
+			result = result * prime + ($personData == null ? 43 : $personData.hashCode());
 			final Object $sessionData = this.getSessionData();
-			result = result * PRIME + ($sessionData == null ? 43 : $sessionData.hashCode());
+			result = result * prime + ($sessionData == null ? 43 : $sessionData.hashCode());
 			return result;
 		}
 

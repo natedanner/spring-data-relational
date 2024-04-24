@@ -367,9 +367,8 @@ public class R2dbcEntityTemplateUnitTests {
 		recorder.addStubbing(s -> s.startsWith("INSERT"), result);
 
 		entityTemplate.insert(new VersionedPerson("id", 0, "bar")).as(StepVerifier::create) //
-				.assertNext(actual -> {
-					assertThat(actual.version()).isEqualTo(1);
-				}) //
+				.assertNext(actual ->
+					assertThat(actual.version()).isEqualTo(1)) //
 				.verifyComplete();
 
 		StatementRecorder.RecordedStatement statement = recorder.getCreatedStatement(s -> s.startsWith("INSERT"));
@@ -406,9 +405,8 @@ public class R2dbcEntityTemplateUnitTests {
 		recorder.addStubbing(s -> s.startsWith("INSERT"), result);
 
 		entityTemplate.insert(new VersionedPersonWithPrimitiveId(0, 0, "bar")).as(StepVerifier::create) //
-				.assertNext(actual -> {
-					assertThat(actual.version()).isEqualTo(1);
-				}) //
+				.assertNext(actual ->
+					assertThat(actual.version()).isEqualTo(1)) //
 				.verifyComplete();
 
 		StatementRecorder.RecordedStatement statement = recorder.getCreatedStatement(s -> s.startsWith("INSERT"));
@@ -513,9 +511,8 @@ public class R2dbcEntityTemplateUnitTests {
 		recorder.addStubbing(s -> s.startsWith("UPDATE"), result);
 
 		entityTemplate.update(new VersionedPerson("id", 1, "bar")).as(StepVerifier::create) //
-				.assertNext(actual -> {
-					assertThat(actual.version()).isEqualTo(2);
-				}) //
+				.assertNext(actual ->
+					assertThat(actual.version()).isEqualTo(2)) //
 				.verifyComplete();
 
 		StatementRecorder.RecordedStatement statement = recorder.getCreatedStatement(s -> s.startsWith("UPDATE"));
@@ -650,9 +647,8 @@ public class R2dbcEntityTemplateUnitTests {
 		recorder.addStubbing(s -> s.startsWith("SELECT"), result);
 
 		entityTemplate.select(WithDoubleHolder.class).as(DoubleHolderProjection.class).all().as(StepVerifier::create) //
-				.assertNext(actual -> {
-					assertThat(actual.number.number).isCloseTo(1.2d, withinPercentage(1d));
-				}).verifyComplete();
+				.assertNext(actual ->
+					assertThat(actual.number.number).isCloseTo(1.2d, withinPercentage(1d))).verifyComplete();
 	}
 
 	@ReadingConverter

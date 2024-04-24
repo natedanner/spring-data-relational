@@ -183,9 +183,8 @@ class EmbeddedRelationalPersistentEntity<T> implements RelationalPersistentEntit
 
 	@Override
 	public void doWithProperties(PropertyHandler<RelationalPersistentProperty> handler) {
-		delegate.doWithProperties((PropertyHandler<RelationalPersistentProperty>) persistentProperty -> {
-			handler.doWithPersistentProperty(wrap(persistentProperty));
-		});
+		delegate.doWithProperties((PropertyHandler<RelationalPersistentProperty>) persistentProperty ->
+			handler.doWithPersistentProperty(wrap(persistentProperty)));
 	}
 
 	@Override
@@ -196,16 +195,14 @@ class EmbeddedRelationalPersistentEntity<T> implements RelationalPersistentEntit
 
 	@Override
 	public void doWithAssociations(AssociationHandler<RelationalPersistentProperty> handler) {
-		delegate.doWithAssociations((AssociationHandler<RelationalPersistentProperty>) association -> {
-			handler.doWithAssociation(new Association<>(wrap(association.getInverse()), wrap(association.getObverse())));
-		});
+		delegate.doWithAssociations((AssociationHandler<RelationalPersistentProperty>) association ->
+			handler.doWithAssociation(new Association<>(wrap(association.getInverse()), wrap(association.getObverse()))));
 	}
 
 	@Override
 	public void doWithAssociations(SimpleAssociationHandler handler) {
-		delegate.doWithAssociations((AssociationHandler<RelationalPersistentProperty>) association -> {
-			handler.doWithAssociation(new Association<>(wrap(association.getInverse()), wrap(association.getObverse())));
-		});
+		delegate.doWithAssociations((AssociationHandler<RelationalPersistentProperty>) association ->
+			handler.doWithAssociation(new Association<>(wrap(association.getInverse()), wrap(association.getObverse()))));
 	}
 
 	@Override

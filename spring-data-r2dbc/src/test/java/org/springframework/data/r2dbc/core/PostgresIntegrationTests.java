@@ -134,9 +134,8 @@ public class PostgresIntegrationTests extends R2dbcIntegrationTestSupport {
 
 		entityTemplate.select(Query.query(where("my_state").is(State.Good)), EntityWithEnum.class) //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
-					assertThat(actual.myState).isEqualTo(State.Good);
-				}).verifyComplete();
+				.consumeNextWith(actual ->
+					assertThat(actual.myState).isEqualTo(State.Good)).verifyComplete();
 	}
 
 	enum State {
@@ -221,10 +220,9 @@ public class PostgresIntegrationTests extends R2dbcIntegrationTestSupport {
 
 		template.insert(entityWithInterval).thenMany(template.select(Query.empty(), EntityWithInterval.class)) //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
+				.consumeNextWith(actual ->
 
-					assertThat(actual.interval).isEqualTo(entityWithInterval.interval);
-				}).verifyComplete();
+					assertThat(actual.interval).isEqualTo(entityWithInterval.interval)).verifyComplete();
 	}
 
 	@Test // gh-1408
@@ -246,12 +244,10 @@ public class PostgresIntegrationTests extends R2dbcIntegrationTestSupport {
 				.verifyComplete();
 
 		template.selectOne(Query.empty(), WithBlobs.class) //
-				.flatMap(it -> {
-					return Flux.from(it.byteBlob.stream()).last().map(blob -> {
+				.flatMap(it -> Flux.from(it.byteBlob.stream()).last().map(blob -> {
 						it.byteBlob = Blob.from(Mono.just(blob));
 						return it;
-					});
-				}).as(StepVerifier::create) //
+					})).as(StepVerifier::create) //
 				.consumeNextWith(actual -> {
 
 					CompletableFuture<byte[]> cf = Mono.from(actual.byteBlob.stream()).map(Unpooled::wrappedBuffer)
@@ -267,12 +263,10 @@ public class PostgresIntegrationTests extends R2dbcIntegrationTestSupport {
 				.expectNextCount(1).verifyComplete();
 
 		template.selectOne(Query.empty(), WithBlobs.class) //
-				.flatMap(it -> {
-					return Flux.from(it.byteBlob.stream()).last().map(blob -> {
+				.flatMap(it -> Flux.from(it.byteBlob.stream()).last().map(blob -> {
 						it.byteBlob = Blob.from(Mono.just(blob));
 						return it;
-					});
-				}).as(StepVerifier::create) //
+					})).as(StepVerifier::create) //
 				.consumeNextWith(actual -> {
 
 					CompletableFuture<byte[]> cf = Mono.from(actual.byteBlob.stream()).map(Unpooled::wrappedBuffer)
@@ -331,8 +325,12 @@ public class PostgresIntegrationTests extends R2dbcIntegrationTestSupport {
 
 		@Override
 		public boolean equals(Object o) {
-			if (this == o) return true;
-			if (o == null || getClass() != o.getClass()) return false;
+			if (this == o) {
+				return true;
+			}
+			if (o == null || getClass() != o.getClass()) {
+				return false;
+			}
 			GeoType geoType = (GeoType) o;
 			return Objects.equals(id, geoType.id) && Objects.equals(thePoint, geoType.thePoint) && Objects.equals(theBox, geoType.theBox) && Objects.equals(theCircle, geoType.theCircle) && Objects.equals(theLine, geoType.theLine) && Objects.equals(theLseg, geoType.theLseg) && Objects.equals(thePath, geoType.thePath) && Objects.equals(thePolygon, geoType.thePolygon) && Objects.equals(springDataBox, geoType.springDataBox) && Objects.equals(springDataCircle, geoType.springDataCircle) && Objects.equals(springDataPoint, geoType.springDataPoint) && Objects.equals(springDataPolygon, geoType.springDataPolygon);
 		}

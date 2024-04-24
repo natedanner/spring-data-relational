@@ -677,15 +677,20 @@ public class EntityRowMapperUnitTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this) return true;
-			if (!(o instanceof final Trivial other))
+			if (o == this) {
+				return true;
+			}
+			if (!(o instanceof final Trivial other)) {
 				return false;
-			if (!other.canEqual(this))
+			}
+			if (!other.canEqual(this)) {
 				return false;
+			}
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
-			if (!Objects.equals(this$id, other$id))
+			if (!Objects.equals(this$id, other$id)) {
 				return false;
+			}
 			final Object this$name = this.getName();
 			final Object other$name = other.getName();
 			return Objects.equals(this$name, other$name);
@@ -696,12 +701,12 @@ public class EntityRowMapperUnitTests {
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
 			final Object $name = this.getName();
-			result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+			result = result * prime + ($name == null ? 43 : $name.hashCode());
 			return result;
 		}
 	}
@@ -747,24 +752,33 @@ public class EntityRowMapperUnitTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this) return true;
-			if (!(o instanceof final TrivialMapPropertiesToNullIfNotNeeded other))
+			if (o == this) {
+				return true;
+			}
+			if (!(o instanceof final TrivialMapPropertiesToNullIfNotNeeded other)) {
 				return false;
-			if (!other.canEqual(this))
+			}
+			if (!other.canEqual(this)) {
 				return false;
+			}
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
-			if (!Objects.equals(this$id, other$id))
+			if (!Objects.equals(this$id, other$id)) {
 				return false;
-			if (this.getAge() != other.getAge()) return false;
+			}
+			if (this.getAge() != other.getAge()) {
+				return false;
+			}
 			final Object this$phone = this.getPhone();
 			final Object other$phone = other.getPhone();
-			if (!Objects.equals(this$phone, other$phone))
+			if (!Objects.equals(this$phone, other$phone)) {
 				return false;
+			}
 			final Object this$isSupreme = this.getIsSupreme();
 			final Object other$isSupreme = other.getIsSupreme();
-			if (!Objects.equals(this$isSupreme, other$isSupreme))
+			if (!Objects.equals(this$isSupreme, other$isSupreme)) {
 				return false;
+			}
 			return this.getReferenceToCustomer() == other.getReferenceToCustomer();
 		}
 
@@ -773,17 +787,17 @@ public class EntityRowMapperUnitTests {
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
-			result = result * PRIME + this.getAge();
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + this.getAge();
 			final Object $phone = this.getPhone();
-			result = result * PRIME + ($phone == null ? 43 : $phone.hashCode());
+			result = result * prime + ($phone == null ? 43 : $phone.hashCode());
 			final Object $isSupreme = this.getIsSupreme();
-			result = result * PRIME + ($isSupreme == null ? 43 : $isSupreme.hashCode());
+			result = result * prime + ($isSupreme == null ? 43 : $isSupreme.hashCode());
 			final long $referenceToCustomer = this.getReferenceToCustomer();
-			result = result * PRIME + (int) ($referenceToCustomer >>> 32 ^ $referenceToCustomer);
+			result = result * prime + (int) ($referenceToCustomer >>> 32 ^ $referenceToCustomer);
 			return result;
 		}
 	}
@@ -817,19 +831,25 @@ public class EntityRowMapperUnitTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this) return true;
-			if (!(o instanceof final WithReference other))
+			if (o == this) {
+				return true;
+			}
+			if (!(o instanceof final WithReference other)) {
 				return false;
-			if (!other.canEqual(this))
+			}
+			if (!other.canEqual(this)) {
 				return false;
+			}
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
-			if (!Objects.equals(this$id, other$id))
+			if (!Objects.equals(this$id, other$id)) {
 				return false;
+			}
 			final Object this$name = this.getName();
 			final Object other$name = other.getName();
-			if (!Objects.equals(this$name, other$name))
+			if (!Objects.equals(this$name, other$name)) {
 				return false;
+			}
 			final Object this$trivialId = this.getTrivialId();
 			final Object other$trivialId = other.getTrivialId();
 			return Objects.equals(this$trivialId, other$trivialId);
@@ -840,14 +860,14 @@ public class EntityRowMapperUnitTests {
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
 			final Object $name = this.getName();
-			result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+			result = result * prime + ($name == null ? 43 : $name.hashCode());
 			final Object $trivialId = this.getTrivialId();
-			result = result * PRIME + ($trivialId == null ? 43 : $trivialId.hashCode());
+			result = result * prime + ($trivialId == null ? 43 : $trivialId.hashCode());
 			return result;
 		}
 	}
@@ -1156,7 +1176,7 @@ public class EntityRowMapperUnitTests {
 		private int isThereAColumnNamed(String name) {
 
 			Optional<Map<String, Object>> first = values.stream().filter(s -> s.equals(name)).findFirst();
-			return (first.isPresent()) ? 1 : 0;
+			return first.isPresent() ? 1 : 0;
 		}
 
 		private boolean isAfterLast() {
@@ -1380,14 +1400,12 @@ public class EntityRowMapperUnitTests {
 
 		public void assertOn(T result) {
 
-			assertSoftly(softly -> {
+			assertSoftly(softly ->
 				expectations.forEach(expectation -> {
 
 					softly.assertThat(expectation.extractor.apply(result)).describedAs("From column: " + expectation.sourceColumn)
 							.isEqualTo(expectation.expectedValue);
-				});
-
-			});
+				}));
 		}
 	}
 

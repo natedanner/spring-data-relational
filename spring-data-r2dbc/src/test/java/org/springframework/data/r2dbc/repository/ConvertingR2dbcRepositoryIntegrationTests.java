@@ -119,9 +119,8 @@ public class ConvertingR2dbcRepositoryIntegrationTests {
 
 		repository.findAll() //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
-					assertThat(actual.name).isEqualTo("read: prefixed: name");
-				}).verifyComplete();
+				.consumeNextWith(actual ->
+					assertThat(actual.name).isEqualTo("read: prefixed: name")).verifyComplete();
 	}
 
 	@Test // GH-1723
@@ -137,9 +136,8 @@ public class ConvertingR2dbcRepositoryIntegrationTests {
 
 		repository.countWithCustomQuery() //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
-					assertThat(actual).isEqualTo(1L);
-				}).verifyComplete();
+				.consumeNextWith(actual ->
+					assertThat(actual).isEqualTo(1L)).verifyComplete();
 	}
 
 	interface ConvertedRepository extends ReactiveCrudRepository<ConvertedEntity, Integer> {

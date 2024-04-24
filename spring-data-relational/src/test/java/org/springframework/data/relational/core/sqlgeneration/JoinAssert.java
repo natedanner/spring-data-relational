@@ -37,7 +37,7 @@ public class JoinAssert extends AbstractAssert<JoinAssert, Join> {
 
 		Collection<Expression> onExpressions = actual.getOnExpressions();
 
-		if (!(onExpressions.iterator().next().toString().equals(left + " = " + right))) {
+		if (!onExpressions.iterator().next().toString().equals(left + " = " + right)) {
 			throw failureWithActualExpected(actual, left + " = " + right,
 					"actual join condition %s does not match expected %s = %s", actual, left, right);
 		}

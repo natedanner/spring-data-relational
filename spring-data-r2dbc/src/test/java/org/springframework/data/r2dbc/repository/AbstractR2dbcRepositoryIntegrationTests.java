@@ -127,9 +127,8 @@ public abstract class AbstractR2dbcRepositoryIntegrationTests extends R2dbcInteg
 
 		repository.findByManual(13) //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
-					assertThat(actual.getName()).isEqualTo("FORSCHUNGSSCHIFF");
-				}) //
+				.consumeNextWith(actual ->
+					assertThat(actual.getName()).isEqualTo("FORSCHUNGSSCHIFF")) //
 				.verifyComplete();
 	}
 
@@ -142,9 +141,8 @@ public abstract class AbstractR2dbcRepositoryIntegrationTests extends R2dbcInteg
 				.map(LegoSet::getName) //
 				.collectList() //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
-					assertThat(actual).contains("SCHAUFELRADBAGGER", "FORSCHUNGSSCHIFF");
-				}).verifyComplete();
+				.consumeNextWith(actual ->
+					assertThat(actual).contains("SCHAUFELRADBAGGER", "FORSCHUNGSSCHIFF")).verifyComplete();
 	}
 
 	@Test // GH-1654
@@ -172,17 +170,15 @@ public abstract class AbstractR2dbcRepositoryIntegrationTests extends R2dbcInteg
 				.map(Named::getName) //
 				.collectList() //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
-					assertThat(actual).contains("SCHAUFELRADBAGGER", "FORSCHUNGSSCHIFF");
-				}).verifyComplete();
+				.consumeNextWith(actual ->
+					assertThat(actual).contains("SCHAUFELRADBAGGER", "FORSCHUNGSSCHIFF")).verifyComplete();
 
 		repository.findBy(WithName.class) //
 				.map(WithName::getName) //
 				.collectList() //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
-					assertThat(actual).contains("SCHAUFELRADBAGGER", "FORSCHUNGSSCHIFF");
-				}).verifyComplete();
+				.consumeNextWith(actual ->
+					assertThat(actual).contains("SCHAUFELRADBAGGER", "FORSCHUNGSSCHIFF")).verifyComplete();
 	}
 
 	@Test // GH-475
@@ -194,9 +190,8 @@ public abstract class AbstractR2dbcRepositoryIntegrationTests extends R2dbcInteg
 				.map(LegoDto::getName) //
 				.collectList() //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
-					assertThat(actual).contains("SCHAUFELRADBAGGER", "FORSCHUNGSSCHIFF");
-				}).verifyComplete();
+				.consumeNextWith(actual ->
+					assertThat(actual).contains("SCHAUFELRADBAGGER", "FORSCHUNGSSCHIFF")).verifyComplete();
 	}
 
 	@Test // GH-344
@@ -214,9 +209,8 @@ public abstract class AbstractR2dbcRepositoryIntegrationTests extends R2dbcInteg
 				.map(Named::getName) //
 				.collectList() //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
-					assertThat(actual).hasSize(1).contains("SCHAUFELRADBAGGER");
-				}).verifyComplete();
+				.consumeNextWith(actual ->
+					assertThat(actual).hasSize(1).contains("SCHAUFELRADBAGGER")).verifyComplete();
 	}
 
 	@Test // GH-41
@@ -227,9 +221,8 @@ public abstract class AbstractR2dbcRepositoryIntegrationTests extends R2dbcInteg
 		repository.findAllIds() //
 				.collectList() //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
-					assertThat(actual).hasSize(2).allMatch(Integer.class::isInstance);
-				}).verifyComplete();
+				.consumeNextWith(actual ->
+					assertThat(actual).hasSize(2).allMatch(Integer.class::isInstance)).verifyComplete();
 	}
 
 	@Test // GH-698
@@ -240,9 +233,8 @@ public abstract class AbstractR2dbcRepositoryIntegrationTests extends R2dbcInteg
 				.map(a -> a.flag) //
 				.collectList() //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
-					assertThat(actual).hasSize(1).contains(true);
-				}).verifyComplete();
+				.consumeNextWith(actual ->
+					assertThat(actual).hasSize(1).contains(true)).verifyComplete();
 	}
 
 	@Test
@@ -261,9 +253,7 @@ public abstract class AbstractR2dbcRepositoryIntegrationTests extends R2dbcInteg
 	@Test // GH-335
 	void shouldFindByPageable() {
 
-		Flux<LegoSet> sets = Flux.fromStream(IntStream.range(0, 100).mapToObj(value -> {
-			return new LegoSet(null, "Set " + value, value);
-		}));
+		Flux<LegoSet> sets = Flux.fromStream(IntStream.range(0, 100).mapToObj(value -> new LegoSet(null, "Set " + value, value)));
 
 		repository.saveAll(sets) //
 				.as(StepVerifier::create) //
@@ -273,18 +263,16 @@ public abstract class AbstractR2dbcRepositoryIntegrationTests extends R2dbcInteg
 		repository.findAllByOrderByManual(PageRequest.of(0, 10)) //
 				.collectList() //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
+				.consumeNextWith(actual ->
 
-					assertThat(actual).hasSize(10).extracting(LegoSet::getManual).containsSequence(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
-				}).verifyComplete();
+					assertThat(actual).hasSize(10).extracting(LegoSet::getManual).containsSequence(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)).verifyComplete();
 
 		repository.findAllByOrderByManual(PageRequest.of(19, 5)) //
 				.collectList() //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
+				.consumeNextWith(actual ->
 
-					assertThat(actual).hasSize(5).extracting(LegoSet::getManual).containsSequence(95, 96, 97, 98, 99);
-				}).verifyComplete();
+					assertThat(actual).hasSize(5).extracting(LegoSet::getManual).containsSequence(95, 96, 97, 98, 99)).verifyComplete();
 	}
 
 	@Test // GH-335
@@ -402,9 +390,8 @@ public abstract class AbstractR2dbcRepositoryIntegrationTests extends R2dbcInteg
 
 		repository.getAllByName("SCHAUFELRADBAGGER") //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
-					assertThat(actual.getName()).isEqualTo("SCHAUFELRADBAGGER");
-				}) //
+				.consumeNextWith(actual ->
+					assertThat(actual.getName()).isEqualTo("SCHAUFELRADBAGGER")) //
 				.verifyComplete();
 	}
 
@@ -427,9 +414,7 @@ public abstract class AbstractR2dbcRepositoryIntegrationTests extends R2dbcInteg
 	}
 
 	private Condition<? super Object> numberOf(int expected) {
-		return new Condition<>(it -> {
-			return it instanceof Number && ((Number) it).intValue() == expected;
-		}, "Number  %d", expected);
+		return new Condition<>(it -> it instanceof Number && ((Number) it).intValue() == expected, "Number  %d", expected);
 	}
 
 	@NoRepositoryBean
@@ -569,25 +554,29 @@ public abstract class AbstractR2dbcRepositoryIntegrationTests extends R2dbcInteg
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this) return true;
-			if (!(o instanceof final LegoDto other))
+			if (o == this) {
+				return true;
+			}
+			if (!(o instanceof final LegoDto other)) {
 				return false;
+			}
 			final Object this$name = this.getName();
 			final Object other$name = other.getName();
-			if (!Objects.equals(this$name, other$name))
+			if (!Objects.equals(this$name, other$name)) {
 				return false;
+			}
 			final Object this$unknown = this.getUnknown();
 			final Object other$unknown = other.getUnknown();
 			return Objects.equals(this$unknown, other$unknown);
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $name = this.getName();
-			result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+			result = result * prime + ($name == null ? 43 : $name.hashCode());
 			final Object $unknown = this.getUnknown();
-			result = result * PRIME + ($unknown == null ? 43 : $unknown.hashCode());
+			result = result * prime + ($unknown == null ? 43 : $unknown.hashCode());
 			return result;
 		}
 

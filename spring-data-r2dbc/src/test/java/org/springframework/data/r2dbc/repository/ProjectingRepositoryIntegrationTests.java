@@ -106,9 +106,8 @@ public class ProjectingRepositoryIntegrationTests {
 
 		repository.findProjectionByEmail("heisenberg@the-white-family.com") //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
-					assertThat(actual.getName()).isEqualTo("Walter");
-				}).verifyComplete();
+				.consumeNextWith(actual ->
+					assertThat(actual.getName()).isEqualTo("Walter")).verifyComplete();
 	}
 
 	@Test

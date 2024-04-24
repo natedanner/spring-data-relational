@@ -45,7 +45,7 @@ import org.springframework.lang.Nullable;
 class SqlGeneratorEmbeddedUnitTests {
 
 	private final RelationalMappingContext context = new JdbcMappingContext();
-	private JdbcConverter converter = new MappingJdbcConverter(context, (identifier, path) -> {
+	private final JdbcConverter converter = new MappingJdbcConverter(context, (identifier, path) -> {
 		throw new UnsupportedOperationException();
 	});
 	private SqlGenerator sqlGenerator;
@@ -65,7 +65,7 @@ class SqlGeneratorEmbeddedUnitTests {
 	void findOne() {
 		final String sql = sqlGenerator.getFindOne();
 
-		assertSoftly(softly -> {
+		assertSoftly(softly ->
 
 			softly.assertThat(sql).startsWith("SELECT") //
 					.contains("dummy_entity.id1 AS id1") //
@@ -80,15 +80,14 @@ class SqlGeneratorEmbeddedUnitTests {
 					.contains("dummy_entity.prefix_prefix2_attr1 AS prefix_prefix2_attr1") //
 					.contains("dummy_entity.prefix_prefix2_attr2 AS prefix_prefix2_attr2") //
 					.contains("WHERE dummy_entity.id1 = :id") //
-					.doesNotContain("JOIN").doesNotContain("embeddable"); //
-		});
+					.doesNotContain("JOIN").doesNotContain("embeddable"));
 	}
 
 	@Test // DATAJDBC-111
 	void findAll() {
 		final String sql = sqlGenerator.getFindAll();
 
-		assertSoftly(softly -> {
+		assertSoftly(softly ->
 
 			softly.assertThat(sql).startsWith("SELECT") //
 					.contains("dummy_entity.id1 AS id1") //
@@ -103,15 +102,14 @@ class SqlGeneratorEmbeddedUnitTests {
 					.contains("dummy_entity.prefix_prefix2_attr1 AS prefix_prefix2_attr1") //
 					.contains("dummy_entity.prefix_prefix2_attr2 AS prefix_prefix2_attr2") //
 					.doesNotContain("JOIN") //
-					.doesNotContain("embeddable");
-		});
+					.doesNotContain("embeddable"));
 	}
 
 	@Test // DATAJDBC-111
 	void findAllInList() {
 		final String sql = sqlGenerator.getFindAllInList();
 
-		assertSoftly(softly -> {
+		assertSoftly(softly ->
 
 			softly.assertThat(sql).startsWith("SELECT") //
 					.contains("dummy_entity.id1 AS id1") //
@@ -126,15 +124,14 @@ class SqlGeneratorEmbeddedUnitTests {
 					.contains("dummy_entity.prefix_prefix2_attr2 AS prefix_prefix2_attr2") //
 					.contains("WHERE dummy_entity.id1 IN (:ids)") //
 					.doesNotContain("JOIN") //
-					.doesNotContain("embeddable");
-		});
+					.doesNotContain("embeddable"));
 	}
 
 	@Test // DATAJDBC-111
 	void insert() {
 		final String sql = sqlGenerator.getInsert(emptySet());
 
-		assertSoftly(softly -> {
+		assertSoftly(softly ->
 
 			softly.assertThat(sql) //
 					.startsWith("INSERT INTO") //
@@ -148,15 +145,14 @@ class SqlGeneratorEmbeddedUnitTests {
 					.contains(":prefix_attr1") //
 					.contains(":prefix_attr2") //
 					.contains(":prefix_prefix2_attr1") //
-					.contains(":prefix_prefix2_attr2");
-		});
+					.contains(":prefix_prefix2_attr2"));
 	}
 
 	@Test // DATAJDBC-111
 	void update() {
 		final String sql = sqlGenerator.getUpdate();
 
-		assertSoftly(softly -> {
+		assertSoftly(softly ->
 
 			softly.assertThat(sql) //
 					.startsWith("UPDATE") //
@@ -170,8 +166,7 @@ class SqlGeneratorEmbeddedUnitTests {
 					.contains("prefix_attr1 = :prefix_attr1") //
 					.contains("prefix_attr2 = :prefix_attr2") //
 					.contains("prefix_prefix2_attr1 = :prefix_prefix2_attr1") //
-					.contains("prefix_prefix2_attr2 = :prefix_prefix2_attr2");
-		});
+					.contains("prefix_prefix2_attr2 = :prefix_prefix2_attr2"));
 	}
 
 	@Test // DATAJDBC-340
@@ -205,7 +200,7 @@ class SqlGeneratorEmbeddedUnitTests {
 
 		assertThat(generatedColumn("embeddable.test", DummyEntity.class)) //
 				.extracting( //
-						c -> c.getName(), //
+						org.springframework.data.relational.core.sql.Column::getName, //
 						c -> c.getTable().getName(), //
 						c -> getAlias(c.getTable()), //
 						this::getAlias) //
@@ -242,7 +237,7 @@ class SqlGeneratorEmbeddedUnitTests {
 
 		assertThat(generatedColumn("prefixedEmbeddable.test", DummyEntity.class)) //
 				.extracting( //
-						c -> c.getName(), //
+						org.springframework.data.relational.core.sql.Column::getName, //
 						c -> c.getTable().getName(), //
 						c -> getAlias(c.getTable()), //
 						this::getAlias) //
@@ -265,7 +260,7 @@ class SqlGeneratorEmbeddedUnitTests {
 	void columnForCascadedEmbeddedProperty() {
 
 		assertThat(generatedColumn("embeddable.embeddable.attr1", DummyEntity.class)) //
-				.extracting(c -> c.getName(), c -> c.getTable().getName(), c -> getAlias(c.getTable()), this::getAlias)
+				.extracting(org.springframework.data.relational.core.sql.Column::getName, c -> c.getTable().getName(), c -> getAlias(c.getTable()), this::getAlias)
 				.containsExactly(SqlIdentifier.unquoted("attr1"), SqlIdentifier.unquoted("dummy_entity"), null,
 						SqlIdentifier.unquoted("attr1"));
 	}
@@ -290,7 +285,7 @@ class SqlGeneratorEmbeddedUnitTests {
 
 		assertThat(generatedColumn("embedded.other.value", DummyEntity2.class)) //
 				.extracting( //
-						c -> c.getName(), //
+						org.springframework.data.relational.core.sql.Column::getName, //
 						c -> c.getTable().getName(), //
 						c -> getAlias(c.getTable()), //
 						this::getAlias) //

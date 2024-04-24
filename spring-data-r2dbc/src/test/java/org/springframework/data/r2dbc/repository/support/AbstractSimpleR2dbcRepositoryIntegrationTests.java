@@ -363,10 +363,9 @@ public abstract class AbstractSimpleR2dbcRepositoryIntegrationTests extends R2db
 				.map(LegoSet::getName) //
 				.collectList() //
 				.as(StepVerifier::create) //
-				.assertNext(actual -> {
+				.assertNext(actual ->
 
-					assertThat(actual).hasSize(2).contains("SCHAUFELRADBAGGER", "FORSCHUNGSSCHIFF");
-				}).verifyComplete();
+					assertThat(actual).hasSize(2).contains("SCHAUFELRADBAGGER", "FORSCHUNGSSCHIFF")).verifyComplete();
 	}
 
 	@Test
@@ -381,10 +380,9 @@ public abstract class AbstractSimpleR2dbcRepositoryIntegrationTests extends R2db
 				.map(LegoSet::getName) //
 				.collectList() //
 				.as(StepVerifier::create) //
-				.assertNext(actual -> {
+				.assertNext(actual ->
 
-					assertThat(actual).hasSize(2).contains("SCHAUFELRADBAGGER", "FORSCHUNGSSCHIFF");
-				}).verifyComplete();
+					assertThat(actual).hasSize(2).contains("SCHAUFELRADBAGGER", "FORSCHUNGSSCHIFF")).verifyComplete();
 	}
 
 	@Test
@@ -675,26 +673,24 @@ public abstract class AbstractSimpleR2dbcRepositoryIntegrationTests extends R2db
 
 		Example<LegoSetWithNonScalarId> exampleWithRegExGlobal = Example.of(legoSet, matching().withStringMatcher(REGEX));
 
-		assertThatIllegalStateException().isThrownBy(() -> {
+		assertThatIllegalStateException().isThrownBy(() ->
 
 			repositoryWithNonScalarId.findAll(exampleWithRegExGlobal) //
 					.map(LegoSetWithNonScalarId::getName) //
 					.as(StepVerifier::create) //
 					.expectNext("Moon space base") //
-					.verifyComplete();
-		});
+					.verifyComplete());
 
 		Example<LegoSetWithNonScalarId> exampleWithFieldRegEx = Example.of(legoSet,
 				matching().withMatcher("name", regex()));
 
-		assertThatIllegalStateException().isThrownBy(() -> {
+		assertThatIllegalStateException().isThrownBy(() ->
 
 			repositoryWithNonScalarId.findAll(exampleWithFieldRegEx) //
 					.map(LegoSetWithNonScalarId::getName) //
 					.as(StepVerifier::create) //
 					.expectNext("Moon space base") //
-					.verifyComplete();
-		});
+					.verifyComplete());
 
 	}
 
@@ -786,10 +782,9 @@ public abstract class AbstractSimpleR2dbcRepositoryIntegrationTests extends R2db
 
 		repository.findBy(Example.of(probe, matching().withIgnorePaths("id")), FluentQuery.ReactiveFluentQuery::first) //
 				.as(StepVerifier::create) //
-				.assertNext(actual -> {
+				.assertNext(actual ->
 
-					assertThat(actual.getManual()).isEqualTo(13);
-				}).verifyComplete();
+					assertThat(actual.getManual()).isEqualTo(13)).verifyComplete();
 	}
 
 	@Test // GH-663
@@ -805,10 +800,9 @@ public abstract class AbstractSimpleR2dbcRepositoryIntegrationTests extends R2db
 
 		repository.findBy(Example.of(probe, matching().withIgnorePaths("id")), FluentQuery.ReactiveFluentQuery::one) //
 				.as(StepVerifier::create) //
-				.assertNext(actual -> {
+				.assertNext(actual ->
 
-					assertThat(actual.getManual()).isEqualTo(13);
-				}).verifyComplete();
+					assertThat(actual.getManual()).isEqualTo(13)).verifyComplete();
 
 		probe = new LegoSet();
 		probe.setManual(13);
@@ -850,19 +844,17 @@ public abstract class AbstractSimpleR2dbcRepositoryIntegrationTests extends R2db
 				.findBy(Example.of(probe, matching().withIgnorePaths("id")),
 						q -> q.sortBy(Sort.by("name")).limit(2).scroll(ScrollPosition.offset())) //
 				.as(StepVerifier::create) //
-				.consumeNextWith(window -> {
+				.consumeNextWith(window ->
 
-					assertThat(window.map(it -> it.name)).containsOnly("FORSCHUNGSSCHIFF", "SCHAUFELRADBAGGER");
-				}).verifyComplete();
+					assertThat(window.map(it -> it.name)).containsOnly("FORSCHUNGSSCHIFF", "SCHAUFELRADBAGGER")).verifyComplete();
 
 		repository
 				.findBy(Example.of(probe, matching().withIgnorePaths("id")),
 						q -> q.sortBy(Sort.by("name")).limit(2).scroll(ScrollPosition.offset(2))) //
 				.as(StepVerifier::create) //
-				.consumeNextWith(window -> {
+				.consumeNextWith(window ->
 
-					assertThat(window.map(it -> it.name)).containsOnly("VOLTRON");
-				}).verifyComplete();
+					assertThat(window.map(it -> it.name)).containsOnly("VOLTRON")).verifyComplete();
 	}
 
 	@Test // GH-663
@@ -924,10 +916,9 @@ public abstract class AbstractSimpleR2dbcRepositoryIntegrationTests extends R2db
 
 		repository.findBy(Example.of(probe, matching().withIgnorePaths("id")), it -> it.as(LegoSetProjection.class).first()) //
 				.as(StepVerifier::create) //
-				.assertNext(it -> {
+				.assertNext(it ->
 
-					assertThat(it.getName()).isEqualTo("FORSCHUNGSSCHIFF");
-				}).verifyComplete();
+					assertThat(it.getName()).isEqualTo("FORSCHUNGSSCHIFF")).verifyComplete();
 	}
 
 	@Test // GH-663
@@ -1106,10 +1097,12 @@ public abstract class AbstractSimpleR2dbcRepositoryIntegrationTests extends R2db
 
 		@Override
 		public boolean equals(Object o) {
-			if (this == o)
+			if (this == o) {
 				return true;
-			if (o == null || getClass() != o.getClass())
+			}
+			if (o == null || getClass() != o.getClass()) {
 				return false;
+			}
 			LegoSetWithNonScalarId that = (LegoSetWithNonScalarId) o;
 			return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(manual, that.manual)
 					&& Objects.equals(extra, that.extra);

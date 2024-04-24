@@ -159,7 +159,7 @@ public class MappingJdbcConverterUnitTests {
 	}
 
 	@SuppressWarnings("unused")
-	private static class DummyEntity {
+	private static final class DummyEntity {
 
 		@Id private final Long id;
 		private final SomeEnum someEnum;

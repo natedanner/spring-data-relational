@@ -116,9 +116,8 @@ public class PartTreeR2dbcQuery extends AbstractR2dbcQuery {
 
 	@Override
 	public String toString() {
-		String sb = getClass().getSimpleName()
+		return getClass().getSimpleName()
 					+ " [" + getQueryMethod().getName()
 					+ ']';
-		return sb;
 	}
 }

@@ -32,7 +32,7 @@ import org.springframework.util.Assert;
  * @author Oliver Drotbohm
  * @since 2.0
  */
-public class Update {
+public final class Update {
 
 	private static final Update EMPTY = new Update(Collections.emptyMap());
 
@@ -117,10 +117,9 @@ public class Update {
 
 		StringJoiner joiner = new StringJoiner(", ");
 
-		getAssignments().forEach((column, o) -> {
+		getAssignments().forEach((column, o) ->
 			joiner.add(
-					String.format("%s = %s", column.toSql(IdentifierProcessing.NONE), o instanceof Number ? o : "'" + o + "'"));
-		});
+					String.format("%s = %s", column.toSql(IdentifierProcessing.NONE), o instanceof Number ? o : "'" + o + "'")));
 
 		return "SET " + joiner;
 	}

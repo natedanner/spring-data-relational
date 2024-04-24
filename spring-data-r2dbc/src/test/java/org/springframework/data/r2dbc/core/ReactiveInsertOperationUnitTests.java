@@ -71,10 +71,9 @@ public class ReactiveInsertOperationUnitTests {
 		entityTemplate.insert(Person.class) //
 				.using(person) //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
+				.consumeNextWith(actual ->
 
-					assertThat(actual.id).isEqualTo("42");
-				}) //
+					assertThat(actual.id).isEqualTo("42")) //
 				.verifyComplete();
 
 		StatementRecorder.RecordedStatement statement = recorder.getCreatedStatement(s -> s.startsWith("INSERT"));
@@ -101,10 +100,9 @@ public class ReactiveInsertOperationUnitTests {
 				.into("the_table") //
 				.using(person) //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
+				.consumeNextWith(actual ->
 
-					assertThat(actual.id).isEqualTo("42");
-				}) //
+					assertThat(actual.id).isEqualTo("42")) //
 				.verifyComplete();
 
 		StatementRecorder.RecordedStatement statement = recorder.getCreatedStatement(s -> s.startsWith("INSERT"));

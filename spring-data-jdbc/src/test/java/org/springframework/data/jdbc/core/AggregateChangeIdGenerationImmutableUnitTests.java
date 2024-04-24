@@ -490,54 +490,65 @@ public class AggregateChangeIdGenerationImmutableUnitTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this) return true;
-			if (!(o instanceof DummyEntity)) return false;
+			if (o == this) {
+				return true;
+			}
+			if (!(o instanceof DummyEntity)) {
+				return false;
+			}
 			final DummyEntity other = (DummyEntity) o;
 			final Object this$rootId = this.getRootId();
 			final Object other$rootId = other.getRootId();
-			if (this$rootId == null ? other$rootId != null : !this$rootId.equals(other$rootId)) return false;
+			if (this$rootId == null ? other$rootId != null : !this$rootId.equals(other$rootId)) {
+				return false;
+			}
 			final Object this$single = this.getSingle();
 			final Object other$single = other.getSingle();
-			if (this$single == null ? other$single != null : !this$single.equals(other$single)) return false;
+			if (this$single == null ? other$single != null : !this$single.equals(other$single)) {
+				return false;
+			}
 			final Object this$contentSet = this.getContentSet();
 			final Object other$contentSet = other.getContentSet();
-			if (this$contentSet == null ? other$contentSet != null : !this$contentSet.equals(other$contentSet))
+			if (this$contentSet == null ? other$contentSet != null : !this$contentSet.equals(other$contentSet)) {
 				return false;
+			}
 			final Object this$contentList = this.getContentList();
 			final Object other$contentList = other.getContentList();
-			if (this$contentList == null ? other$contentList != null : !this$contentList.equals(other$contentList))
+			if (this$contentList == null ? other$contentList != null : !this$contentList.equals(other$contentList)) {
 				return false;
+			}
 			final Object this$contentMap = this.getContentMap();
 			final Object other$contentMap = other.getContentMap();
-			if (this$contentMap == null ? other$contentMap != null : !this$contentMap.equals(other$contentMap))
+			if (this$contentMap == null ? other$contentMap != null : !this$contentMap.equals(other$contentMap)) {
 				return false;
+			}
 			final Object this$contentNoIdList = this.getContentNoIdList();
 			final Object other$contentNoIdList = other.getContentNoIdList();
-			if (this$contentNoIdList == null ? other$contentNoIdList != null : !this$contentNoIdList.equals(other$contentNoIdList))
+			if (this$contentNoIdList == null ? other$contentNoIdList != null : !this$contentNoIdList.equals(other$contentNoIdList)) {
 				return false;
+			}
 			final Object this$embedded = this.getEmbedded();
 			final Object other$embedded = other.getEmbedded();
-			if (this$embedded == null ? other$embedded != null : !this$embedded.equals(other$embedded)) return false;
-			return true;
+			return !(this$embedded == null ? other$embedded != null : !this$embedded.equals(other$embedded));
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $rootId = this.getRootId();
-			result = result * PRIME + ($rootId == null ? 43 : $rootId.hashCode());
+			result = result * prime + ($rootId == null ? 43 : $rootId.hashCode());
 			final Object $single = this.getSingle();
-			result = result * PRIME + ($single == null ? 43 : $single.hashCode());
+			result = result * prime + ($single == null ? 43 : $single.hashCode());
 			final Object $contentSet = this.getContentSet();
-			result = result * PRIME + ($contentSet == null ? 43 : $contentSet.hashCode());
+			result = result * prime + ($contentSet == null ? 43 : $contentSet.hashCode());
 			final Object $contentList = this.getContentList();
-			result = result * PRIME + ($contentList == null ? 43 : $contentList.hashCode());
+			result = result * prime + ($contentList == null ? 43 : $contentList.hashCode());
 			final Object $contentMap = this.getContentMap();
-			result = result * PRIME + ($contentMap == null ? 43 : $contentMap.hashCode());
+			result = result * prime + ($contentMap == null ? 43 : $contentMap.hashCode());
 			final Object $contentNoIdList = this.getContentNoIdList();
-			result = result * PRIME + ($contentNoIdList == null ? 43 : $contentNoIdList.hashCode());
+			result = result * prime + ($contentNoIdList == null ? 43 : $contentNoIdList.hashCode());
 			final Object $embedded = this.getEmbedded();
-			result = result * PRIME + ($embedded == null ? 43 : $embedded.hashCode());
+			result = result * prime + ($embedded == null ? 43 : $embedded.hashCode());
 			return result;
 		}
 
@@ -622,40 +633,51 @@ public class AggregateChangeIdGenerationImmutableUnitTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this) return true;
-			if (!(o instanceof Content)) return false;
+			if (o == this) {
+				return true;
+			}
+			if (!(o instanceof Content)) {
+				return false;
+			}
 			final Content other = (Content) o;
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
-			if (this$id == null ? other$id != null : !this$id.equals(other$id)) return false;
+			if (this$id == null ? other$id != null : !this$id.equals(other$id)) {
+				return false;
+			}
 			final Object this$single = this.getSingle();
 			final Object other$single = other.getSingle();
-			if (this$single == null ? other$single != null : !this$single.equals(other$single)) return false;
+			if (this$single == null ? other$single != null : !this$single.equals(other$single)) {
+				return false;
+			}
 			final Object this$tagSet = this.getTagSet();
 			final Object other$tagSet = other.getTagSet();
-			if (this$tagSet == null ? other$tagSet != null : !this$tagSet.equals(other$tagSet)) return false;
+			if (this$tagSet == null ? other$tagSet != null : !this$tagSet.equals(other$tagSet)) {
+				return false;
+			}
 			final Object this$tagList = this.getTagList();
 			final Object other$tagList = other.getTagList();
-			if (this$tagList == null ? other$tagList != null : !this$tagList.equals(other$tagList)) return false;
+			if (this$tagList == null ? other$tagList != null : !this$tagList.equals(other$tagList)) {
+				return false;
+			}
 			final Object this$tagMap = this.getTagMap();
 			final Object other$tagMap = other.getTagMap();
-			if (this$tagMap == null ? other$tagMap != null : !this$tagMap.equals(other$tagMap)) return false;
-			return true;
+			return !(this$tagMap == null ? other$tagMap != null : !this$tagMap.equals(other$tagMap));
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
 			final Object $single = this.getSingle();
-			result = result * PRIME + ($single == null ? 43 : $single.hashCode());
+			result = result * prime + ($single == null ? 43 : $single.hashCode());
 			final Object $tagSet = this.getTagSet();
-			result = result * PRIME + ($tagSet == null ? 43 : $tagSet.hashCode());
+			result = result * prime + ($tagSet == null ? 43 : $tagSet.hashCode());
 			final Object $tagList = this.getTagList();
-			result = result * PRIME + ($tagList == null ? 43 : $tagList.hashCode());
+			result = result * prime + ($tagList == null ? 43 : $tagList.hashCode());
 			final Object $tagMap = this.getTagMap();
-			result = result * PRIME + ($tagMap == null ? 43 : $tagMap.hashCode());
+			result = result * prime + ($tagMap == null ? 43 : $tagMap.hashCode());
 			return result;
 		}
 
@@ -724,35 +746,44 @@ public class AggregateChangeIdGenerationImmutableUnitTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this) return true;
-			if (!(o instanceof ContentNoId)) return false;
+			if (o == this) {
+				return true;
+			}
+			if (!(o instanceof ContentNoId)) {
+				return false;
+			}
 			final ContentNoId other = (ContentNoId) o;
 			final Object this$single = this.getSingle();
 			final Object other$single = other.getSingle();
-			if (this$single == null ? other$single != null : !this$single.equals(other$single)) return false;
+			if (this$single == null ? other$single != null : !this$single.equals(other$single)) {
+				return false;
+			}
 			final Object this$tagSet = this.getTagSet();
 			final Object other$tagSet = other.getTagSet();
-			if (this$tagSet == null ? other$tagSet != null : !this$tagSet.equals(other$tagSet)) return false;
+			if (this$tagSet == null ? other$tagSet != null : !this$tagSet.equals(other$tagSet)) {
+				return false;
+			}
 			final Object this$tagList = this.getTagList();
 			final Object other$tagList = other.getTagList();
-			if (this$tagList == null ? other$tagList != null : !this$tagList.equals(other$tagList)) return false;
+			if (this$tagList == null ? other$tagList != null : !this$tagList.equals(other$tagList)) {
+				return false;
+			}
 			final Object this$tagMap = this.getTagMap();
 			final Object other$tagMap = other.getTagMap();
-			if (this$tagMap == null ? other$tagMap != null : !this$tagMap.equals(other$tagMap)) return false;
-			return true;
+			return !(this$tagMap == null ? other$tagMap != null : !this$tagMap.equals(other$tagMap));
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $single = this.getSingle();
-			result = result * PRIME + ($single == null ? 43 : $single.hashCode());
+			result = result * prime + ($single == null ? 43 : $single.hashCode());
 			final Object $tagSet = this.getTagSet();
-			result = result * PRIME + ($tagSet == null ? 43 : $tagSet.hashCode());
+			result = result * prime + ($tagSet == null ? 43 : $tagSet.hashCode());
 			final Object $tagList = this.getTagList();
-			result = result * PRIME + ($tagList == null ? 43 : $tagList.hashCode());
+			result = result * prime + ($tagList == null ? 43 : $tagList.hashCode());
 			final Object $tagMap = this.getTagMap();
-			result = result * PRIME + ($tagMap == null ? 43 : $tagMap.hashCode());
+			result = result * prime + ($tagMap == null ? 43 : $tagMap.hashCode());
 			return result;
 		}
 
@@ -804,25 +835,30 @@ public class AggregateChangeIdGenerationImmutableUnitTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this) return true;
-			if (!(o instanceof Tag)) return false;
+			if (o == this) {
+				return true;
+			}
+			if (!(o instanceof Tag)) {
+				return false;
+			}
 			final Tag other = (Tag) o;
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
-			if (this$id == null ? other$id != null : !this$id.equals(other$id)) return false;
+			if (this$id == null ? other$id != null : !this$id.equals(other$id)) {
+				return false;
+			}
 			final Object this$name = this.getName();
 			final Object other$name = other.getName();
-			if (this$name == null ? other$name != null : !this$name.equals(other$name)) return false;
-			return true;
+			return !(this$name == null ? other$name != null : !this$name.equals(other$name));
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
 			final Object $name = this.getName();
-			result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+			result = result * prime + ($name == null ? 43 : $name.hashCode());
 			return result;
 		}
 

@@ -286,9 +286,8 @@ public class JdbcRepositoryIntegrationTests {
 		entity.setName("something else");
 		DummyEntity saved = repository.save(entity);
 
-		assertThat(repository.findById(entity.getIdProp())).hasValueSatisfying(it -> {
-			assertThat(it.getName()).isEqualTo(saved.getName());
-		});
+		assertThat(repository.findById(entity.getIdProp())).hasValueSatisfying(it ->
+			assertThat(it.getName()).isEqualTo(saved.getName()));
 	}
 
 	@Test // DATAJDBC-98
@@ -1517,38 +1516,43 @@ public class JdbcRepositoryIntegrationTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this)
+			if (o == this) {
 				return true;
-			if (!(o instanceof final Root other))
+			}
+			if (!(o instanceof final Root other)) {
 				return false;
+			}
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
-			if (!Objects.equals(this$id, other$id))
+			if (!Objects.equals(this$id, other$id)) {
 				return false;
+			}
 			final Object this$name = this.getName();
 			final Object other$name = other.getName();
-			if (!Objects.equals(this$name, other$name))
+			if (!Objects.equals(this$name, other$name)) {
 				return false;
+			}
 			final Object this$intermediate = this.getIntermediate();
 			final Object other$intermediate = other.getIntermediate();
-			if (!Objects.equals(this$intermediate, other$intermediate))
+			if (!Objects.equals(this$intermediate, other$intermediate)) {
 				return false;
+			}
 			final Object this$intermediates = this.getIntermediates();
 			final Object other$intermediates = other.getIntermediates();
 			return Objects.equals(this$intermediates, other$intermediates);
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
 			final Object $name = this.getName();
-			result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+			result = result * prime + ($name == null ? 43 : $name.hashCode());
 			final Object $intermediate = this.getIntermediate();
-			result = result * PRIME + ($intermediate == null ? 43 : $intermediate.hashCode());
+			result = result * prime + ($intermediate == null ? 43 : $intermediate.hashCode());
 			final Object $intermediates = this.getIntermediates();
-			result = result * PRIME + ($intermediates == null ? 43 : $intermediates.hashCode());
+			result = result * prime + ($intermediates == null ? 43 : $intermediates.hashCode());
 			return result;
 		}
 
@@ -1620,38 +1624,43 @@ public class JdbcRepositoryIntegrationTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this)
+			if (o == this) {
 				return true;
-			if (!(o instanceof final Intermediate other))
+			}
+			if (!(o instanceof final Intermediate other)) {
 				return false;
+			}
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
-			if (!Objects.equals(this$id, other$id))
+			if (!Objects.equals(this$id, other$id)) {
 				return false;
+			}
 			final Object this$name = this.getName();
 			final Object other$name = other.getName();
-			if (!Objects.equals(this$name, other$name))
+			if (!Objects.equals(this$name, other$name)) {
 				return false;
+			}
 			final Object this$leaf = this.getLeaf();
 			final Object other$leaf = other.getLeaf();
-			if (!Objects.equals(this$leaf, other$leaf))
+			if (!Objects.equals(this$leaf, other$leaf)) {
 				return false;
+			}
 			final Object this$leaves = this.getLeaves();
 			final Object other$leaves = other.getLeaves();
 			return Objects.equals(this$leaves, other$leaves);
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
 			final Object $name = this.getName();
-			result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+			result = result * prime + ($name == null ? 43 : $name.hashCode());
 			final Object $leaf = this.getLeaf();
-			result = result * PRIME + ($leaf == null ? 43 : $leaf.hashCode());
+			result = result * prime + ($leaf == null ? 43 : $leaf.hashCode());
 			final Object $leaves = this.getLeaves();
-			result = result * PRIME + ($leaves == null ? 43 : $leaves.hashCode());
+			result = result * prime + ($leaves == null ? 43 : $leaves.hashCode());
 			return result;
 		}
 
@@ -1680,26 +1689,29 @@ public class JdbcRepositoryIntegrationTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this)
+			if (o == this) {
 				return true;
-			if (!(o instanceof final Leaf other))
+			}
+			if (!(o instanceof final Leaf other)) {
 				return false;
+			}
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
-			if (!Objects.equals(this$id, other$id))
+			if (!Objects.equals(this$id, other$id)) {
 				return false;
+			}
 			final Object this$name = this.getName();
 			final Object other$name = other.getName();
 			return Objects.equals(this$name, other$name);
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
 			final Object $name = this.getName();
-			result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+			result = result * prime + ($name == null ? 43 : $name.hashCode());
 			return result;
 		}
 
@@ -1814,10 +1826,12 @@ public class JdbcRepositoryIntegrationTests {
 
 		@Override
 		public boolean equals(Object o) {
-			if (this == o)
+			if (this == o) {
 				return true;
-			if (o == null || getClass() != o.getClass())
+			}
+			if (o == null || getClass() != o.getClass()) {
 				return false;
+			}
 			DummyEntity that = (DummyEntity) o;
 			return flag == that.flag && Objects.equals(name, that.name) && Objects.equals(pointInTime, that.pointInTime)
 					&& Objects.equals(offsetDateTime, that.offsetDateTime) && Objects.equals(idProp, that.idProp)
@@ -1850,20 +1864,22 @@ public class JdbcRepositoryIntegrationTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this)
+			if (o == this) {
 				return true;
-			if (!(o instanceof final DtoProjection other))
+			}
+			if (!(o instanceof final DtoProjection other)) {
 				return false;
+			}
 			final Object this$name = this.getName();
 			final Object other$name = other.getName();
 			return Objects.equals(this$name, other$name);
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $name = this.getName();
-			result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+			result = result * prime + ($name == null ? 43 : $name.hashCode());
 			return result;
 		}
 

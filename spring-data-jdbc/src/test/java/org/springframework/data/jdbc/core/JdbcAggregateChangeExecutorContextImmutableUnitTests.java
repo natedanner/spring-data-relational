@@ -221,34 +221,41 @@ public class JdbcAggregateChangeExecutorContextImmutableUnitTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this) return true;
-			if (!(o instanceof final DummyEntity other))
+			if (o == this) {
+				return true;
+			}
+			if (!(o instanceof final DummyEntity other)) {
 				return false;
+			}
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
-			if (!Objects.equals(this$id, other$id))
+			if (!Objects.equals(this$id, other$id)) {
 				return false;
-			if (this.getVersion() != other.getVersion()) return false;
+			}
+			if (this.getVersion() != other.getVersion()) {
+				return false;
+			}
 			final Object this$content = this.getContent();
 			final Object other$content = other.getContent();
-			if (!Objects.equals(this$content, other$content))
+			if (!Objects.equals(this$content, other$content)) {
 				return false;
+			}
 			final Object this$list = this.getList();
 			final Object other$list = other.getList();
 			return Objects.equals(this$list, other$list);
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
 			final long $version = this.getVersion();
-			result = result * PRIME + (int) ($version >>> 32 ^ $version);
+			result = result * prime + (int) ($version >>> 32 ^ $version);
 			final Object $content = this.getContent();
-			result = result * PRIME + ($content == null ? 43 : $content.hashCode());
+			result = result * prime + ($content == null ? 43 : $content.hashCode());
 			final Object $list = this.getList();
-			result = result * PRIME + ($list == null ? 43 : $list.hashCode());
+			result = result * prime + ($list == null ? 43 : $list.hashCode());
 			return result;
 		}
 
@@ -290,19 +297,22 @@ public class JdbcAggregateChangeExecutorContextImmutableUnitTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this) return true;
-			if (!(o instanceof final Content other))
+			if (o == this) {
+				return true;
+			}
+			if (!(o instanceof final Content other)) {
 				return false;
+			}
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
 			return Objects.equals(this$id, other$id);
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
 			return result;
 		}
 

@@ -13,10 +13,12 @@ record ForeignKey(String name, String tableName, List<String> columnNames, Strin
 		List<String> referencedColumnNames) {
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
+		if (this == o) {
 			return true;
-		if (o == null || getClass() != o.getClass())
+		}
+		if (o == null || getClass() != o.getClass()) {
 			return false;
+		}
 		ForeignKey that = (ForeignKey) o;
 		return Objects.equals(tableName, that.tableName) && Objects.equals(columnNames, that.columnNames)
 				&& Objects.equals(referencedTableName, that.referencedTableName)
